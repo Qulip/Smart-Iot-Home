@@ -1,4 +1,4 @@
-package me.project.smartiothome.ui.dashboard;
+package me.project.smartiothome.ui.curtain;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import me.project.smartiothome.R;
 
-public class DashboardFragment extends Fragment {
+public class CurtainFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private CurtainViewModel curtainViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        curtainViewModel =
+                new ViewModelProvider(this).get(CurtainViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_curtain, container, false);
         final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        curtainViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

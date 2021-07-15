@@ -1,4 +1,4 @@
-package me.project.smartiothome.ui.notifications;
+package me.project.smartiothome.ui.light;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import me.project.smartiothome.R;
 
-public class NotificationsFragment extends Fragment {
+public class LightFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    private LightViewModel lightViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+        lightViewModel =
+                new ViewModelProvider(this).get(LightViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_light, container, false);
         final TextView textView = root.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        lightViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

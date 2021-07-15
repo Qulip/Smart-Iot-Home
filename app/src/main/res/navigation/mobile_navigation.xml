@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="me.project.smartiothome.ui.dashboard.DashboardFragment"
+        android:name="me.project.smartiothome.ui.curtain.CurtainFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_curtain" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="me.project.smartiothome.ui.notifications.NotificationsFragment"
+        android:name="me.project.smartiothome.ui.light.LightFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_light" />
 </navigation>
