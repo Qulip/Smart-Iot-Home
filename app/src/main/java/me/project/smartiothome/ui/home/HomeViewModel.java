@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import me.project.smartiothome.RequestHttpURLConnection;
+import me.project.smartiothome.ParseJson;
 
 import java.net.URL;
 
@@ -24,12 +25,12 @@ public class HomeViewModel extends ViewModel {
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
-        mText = new MutableLiveData<>();
         Temperature = new MutableLiveData<>();
         Humidity = new MutableLiveData<>();
-        //strUrl = "https://m.naver.com/";          //아두이노 없을경우
+        //strUrl = "https://m.naver.com/";          //네이버
         //strUrl = "http://192.168.0.3:90/";      //내부 아이피 선언
-        strUrl = "http://54.180.134.142:6880/";      //aws 아이피 선언
+        //strUrl = "http://54.180.134.142:6880/";      //aws 아이피 선언
+        strUrl = "http://192.168.0.6:8090/getjson.php";      //라즈베리 파이 json
         NetWorkTask networkTask = new NetWorkTask(strUrl, null);
         networkTask.execute();
     }
@@ -59,8 +60,10 @@ public class HomeViewModel extends ViewModel {
             super.onPostExecute(s);
             mText.setValue(s);
             if(s!=null) {
+                ParseJson json = new ParseJson(s);
+                Temperature.setValue(json.getDate());
                 //Temperature.setValue(s);
-                Temperature.setValue("온도 : " + s.substring(172, 174) + "'C");
+                //Temperature.setValue("온도 : " + s.substring(172, 174) + "'C");
                 Humidity.setValue("습도 : " + s.substring(198, 200) + "%");
             }else{
                 Temperature.setValue("Connection Error");
