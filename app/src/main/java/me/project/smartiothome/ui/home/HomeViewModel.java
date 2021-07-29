@@ -61,7 +61,7 @@ public class HomeViewModel extends ViewModel {
             mText.setValue(s);
             if(s!=null) {
                 ParseJson json = new ParseJson(s);
-                Temperature.setValue(json.getDate());
+                Temperature.setValue(json.getDetect());
                 //Temperature.setValue(s);
                 //Temperature.setValue("온도 : " + s.substring(172, 174) + "'C");
                 Humidity.setValue("습도 : " + s.substring(198, 200) + "%");
