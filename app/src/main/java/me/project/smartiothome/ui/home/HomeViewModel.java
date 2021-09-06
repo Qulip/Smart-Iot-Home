@@ -27,10 +27,7 @@ public class HomeViewModel extends ViewModel {
         mText = new MutableLiveData<>();
         Temperature = new MutableLiveData<>();
         Humidity = new MutableLiveData<>();
-        //strUrl = "https://m.naver.com/";          //네이버
-        //strUrl = "http://192.168.0.3:90/";      //내부 아이피 선언
-        //strUrl = "http://54.180.134.142:6880/";      //aws 아이피 선언
-        strUrl = "http://192.168.0.6:8090/getjson.php";      //라즈베리 파이 json
+        strUrl = "http://192.168.0.6:8090/getjson.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
         NetWorkTask networkTask = new NetWorkTask(strUrl, null);
         networkTask.execute();
     }
@@ -61,7 +58,7 @@ public class HomeViewModel extends ViewModel {
             mText.setValue(s);
             if(s!=null) {
                 ParseJson json = new ParseJson(s);
-                Temperature.setValue(json.getDetect());
+                Temperature.setValue(json.getDate());       //일단 온도 가 아님 다른 값 출력
                 //Temperature.setValue(s);
                 //Temperature.setValue("온도 : " + s.substring(172, 174) + "'C");
                 Humidity.setValue("습도 : " + s.substring(198, 200) + "%");

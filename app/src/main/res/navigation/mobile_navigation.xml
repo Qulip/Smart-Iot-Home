@@ -14,12 +14,12 @@
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="me.project.smartiothome.ui.curtain.CurtainFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_curtain"
         tools:layout="@layout/fragment_curtain" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="me.project.smartiothome.ui.light.LightFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_light"
         tools:layout="@layout/fragment_light" />
 </navigation>

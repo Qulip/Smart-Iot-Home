@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Smart Iot Home</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Curtain</string>
-    <string name="title_notifications">Light</string>
+    <string name="title_curtain">Curtain</string>
+    <string name="title_light">Light</string>
 </resources>
