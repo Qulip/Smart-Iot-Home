@@ -20,6 +20,7 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<String> mText;
     private MutableLiveData<String> Temperature;
     private MutableLiveData<String> Humidity;
+    private MutableLiveData<String> Detect;
 
     Handler handler = new Handler();
 
@@ -27,6 +28,7 @@ public class HomeViewModel extends ViewModel {
         mText = new MutableLiveData<>();
         Temperature = new MutableLiveData<>();
         Humidity = new MutableLiveData<>();
+        Detect = new MutableLiveData<>();
         strUrl = "http://192.168.0.6:8090/getjson.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
         NetWorkTask networkTask = new NetWorkTask(strUrl, null);
         networkTask.execute();
@@ -58,19 +60,23 @@ public class HomeViewModel extends ViewModel {
             mText.setValue(s);
             if(s!=null) {
                 ParseJson json = new ParseJson(s);
-                Temperature.setValue(json.getDate());       //일단 온도 가 아님 다른 값 출력
-                //Temperature.setValue(s);
-                //Temperature.setValue("온도 : " + s.substring(172, 174) + "'C");
-                Humidity.setValue("습도 : " + s.substring(198, 200) + "%");
+                Temperature.setValue(json.getTemp()+"'C");
+                Humidity.setValue(json.getHumi()+"%");
+                //detect.setValue(json.getDetect());
+
+                if(json.getDetect().equals("0")){
+                    Detect.setValue("No");
+                }else{
+                    Detect.setValue("Check Now");
+                }
+
             }else{
                 Temperature.setValue("Connection Error");
                 Humidity.setValue("Connection Error");
             }
         }
     }
-    public LiveData<String> getText() {
-        return mText;
-    }
     public LiveData<String> getTemperature(){ return Temperature; }
     public LiveData<String> getHumidity(){ return Humidity; }
+    public LiveData<String> getDetect(){ return Detect; }
 }

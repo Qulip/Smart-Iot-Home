@@ -18,10 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="399dp"
             android:src="@drawable/iot" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -30,45 +30,12 @@
                 android:layout_height="80dp"
                 android:layout_weight="1"
                 android:src="@drawable/celsius" />
-
-            <TextView
-                android:id="@+id/text_temperature"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="25sp"
-                android:gravity="center_vertical"
-                android:text="Loading" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_weight="1"
                 android:src="@drawable/humidity" />
-
-            <TextView
-                android:id="@+id/text_humidity"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_weight="1"
-                android:textSize="25sp"
-                android:gravity="center_vertical"
-                android:text="Loading" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imageView9"
@@ -77,14 +44,45 @@
                 android:layout_weight="1"
                 android:src="@drawable/siren" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_temperature"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="23sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="@string/loading" />
+
+            <TextView
+                android:id="@+id/text_humidity"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:textSize="23sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="@string/loading" />
+
             <TextView
                 android:id="@+id/text_Siren"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="25sp"
-                android:gravity="center_vertical"
-                android:text="Loading" />
+                android:textSize="23sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="@string/loading" />
+
         </LinearLayout>
 
     </LinearLayout>
