@@ -16,7 +16,7 @@ import java.net.URL;
 public class HomeViewModel extends ViewModel {
 
     private URL Url;
-    private String strUrl,strCookie,result;
+    private String strUrl,strCookie,result, strUrl_sec, strUrl_th;
     private MutableLiveData<String> mText;
     private MutableLiveData<String> Temperature;
     private MutableLiveData<String> Humidity;
@@ -30,6 +30,9 @@ public class HomeViewModel extends ViewModel {
         Humidity = new MutableLiveData<>();
         Detect = new MutableLiveData<>();
         strUrl = "http://192.168.0.6:8090/getjson.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
+        strUrl_sec = "http://192.168.0.6:8090/getjson_sec.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
+        strUrl_th = "http://192.168.0.6:8090/getjson_th.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
+        //strUrl = "http://218.39.125.134:3415/getjson.php";    //외부 접속
         NetWorkTask networkTask = new NetWorkTask(strUrl, null);
         networkTask.execute();
     }
