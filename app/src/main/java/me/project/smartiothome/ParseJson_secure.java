@@ -19,7 +19,7 @@ public class ParseJson_secure {
             for(int i =0; i<jsonArray.length(); i++){
                 JSONObject myhouseObject = jsonArray.getJSONObject(i);
                 time = myhouseObject.getString("reg_time");
-                place = myhouseObject.getString("temp");//수정 필요
+                place = myhouseObject.getString("loc");//수정 필요
             }
         }
         catch (JSONException e){
