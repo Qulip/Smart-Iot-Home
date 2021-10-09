@@ -46,24 +46,43 @@ public class HomeViewModel extends ViewModel {
     }
 
     public class NetWorkTask extends AsyncTask<Void, Void, String> {
-        private String url;
+        private String url_th;
+        private String url_sec;
         private ContentValues values;
-        private boolean place;              //온습도(1)인지, 방범(0)인지 확인
 
-        public NetWorkTask(String url, ContentValues values, boolean place) {
+        public NetWorkTask(String url_th, String url_sec, ContentValues values) {
 
-            this.url = url;
+            this.url_th = url_th;
             this.values = values;
-            this.place = place;
+            this.url_sec = url_sec;
         }
 
         @Override
         protected String doInBackground(Void... params) {
 
-            String result; // 요청 결과를 저장할 변수.
+            String result, temp, humi, sec; // 요청 결과를 저장할 변수.
             RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
-            result = requestHttpURLConnection.request(url, values); // 해당 URL로 부터 결과물을 얻어온다.
-
+            result = requestHttpURLConnection.request(url_th, values); // 해당 URL로 부터 결과물을 얻어온다.
+            if(result!=null){
+                ParseJson_th json_th = new ParseJson_th(s);
+                temp = json_th.getTemp() + "'C";
+                humi = json_th.getHumi() + "%";
+            }else{
+                temp = "Connection Error";
+                humi = "Connection Error";
+            }
+            result = requestHttpURLConnection.request(url_sec, values); // 해당 URL로 부터 결과물을 얻어온다.
+            if(result!=null){
+                ParseJson_th json_secure = new ParseJson_th(result);
+                if (json_secure.getPlace().equals("0")) {
+                    Detect.setValue("No");
+                } else {
+                    Detect.setValue("Check Now");
+                }
+            }else{
+                temp = "Connection Error";
+                humi = "Connection Error";
+            }
             return result;
         }
 
