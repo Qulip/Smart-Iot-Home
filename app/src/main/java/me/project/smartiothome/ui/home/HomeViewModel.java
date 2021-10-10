@@ -14,6 +14,7 @@ import me.project.smartiothome.ParseJson_th;
 import me.project.smartiothome.ParseJson_secure;
 
 import java.net.URL;
+import java.util.StringTokenizer;
 
 public class HomeViewModel extends ViewModel {
 
@@ -35,13 +36,12 @@ public class HomeViewModel extends ViewModel {
         strUrl_sec = "http://192.168.0.6:8090/getjson_sec.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
         strUrl_th = "http://192.168.0.6:8090/getjson_th.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
         /*
-        strUrl = "http://218.39.125.134:3415/getjson.php";    //외부 접속
-        strUrl_sec = "http://218.39.125.134:3415/getjson_sec.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
-        strUrl_th = "http://218.39.125.134:3415/getjson_th.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
+        //외부 접속
+        strUrl = "http://218.39.125.134:3415/getjson.php";
+        strUrl_sec = "http://218.39.125.134:3415/getjson_sec.php";
+        strUrl_th = "http://218.39.125.134:3415/getjson_th.php";
         */
-        NetWorkTask networkTask = new NetWorkTask(strUrl_th, null, true);   //온
-        networkTask.execute();
-        networkTask = new NetWorkTask(strUrl_sec, null, false);
+        NetWorkTask networkTask = new NetWorkTask(strUrl_th, strUrl_sec, null);   //온
         networkTask.execute();
     }
 
@@ -64,7 +64,7 @@ public class HomeViewModel extends ViewModel {
             RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
             result = requestHttpURLConnection.request(url_th, values); // 해당 URL로 부터 결과물을 얻어온다.
             if(result!=null){
-                ParseJson_th json_th = new ParseJson_th(s);
+                ParseJson_th json_th = new ParseJson_th(result);
                 temp = json_th.getTemp() + "'C";
                 humi = json_th.getHumi() + "%";
             }else{
@@ -73,16 +73,16 @@ public class HomeViewModel extends ViewModel {
             }
             result = requestHttpURLConnection.request(url_sec, values); // 해당 URL로 부터 결과물을 얻어온다.
             if(result!=null){
-                ParseJson_th json_secure = new ParseJson_th(result);
+                ParseJson_secure json_secure = new ParseJson_secure(result);
                 if (json_secure.getPlace().equals("0")) {
-                    Detect.setValue("No");
+                    sec = "No";
                 } else {
-                    Detect.setValue("Check Now");
+                    sec = "Check Now";
                 }
             }else{
-                temp = "Connection Error";
-                humi = "Connection Error";
+                sec = "Connection Error";
             }
+            result = temp + " " + humi + " " + sec;
             return result;
         }
 
@@ -90,27 +90,11 @@ public class HomeViewModel extends ViewModel {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             mText.setValue(s);
-            if(s!=null) {
-                if(place) {
-                    ParseJson_th json_th = new ParseJson_th(s);
-                    Temperature.setValue(json_th.getTemp() + "'C");
-                    Humidity.setValue(json_th.getHumi() + "%");
-                }else {
-                    ParseJson_secure json_secure = new ParseJson_secure(s);
-                    if (json_secure.getPlace().equals("0")) {
-                        Detect.setValue("No");
-                    } else {
-                        Detect.setValue("Check Now");
-                    }
-                }
-
-            }else{
-                if(place) {
-                    Temperature.setValue("Connection Error");
-                    Humidity.setValue("Connection Error");
-                }else{
-                    Detect.setValue("Connection Error");
-                }
+            if (s != null) {
+                StringTokenizer st = new StringTokenizer(s);
+                Temperature.setValue(st.nextToken());
+                Humidity.setValue(st.nextToken());
+                Detect.setValue(st.nextToken());
             }
         }
     }
