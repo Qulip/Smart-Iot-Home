@@ -27,11 +27,12 @@ public class LightFragment extends Fragment {
                 new ViewModelProvider(this).get(LightViewModel.class);
         View root = inflater.inflate(R.layout.fragment_light, container, false);
         String[] all_reg = lightViewModel.getAll();
-        ArrayAdapter<String> Adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, all_reg) ;
+        if(all_reg.length>0) {//error occur in here
+            ArrayAdapter<String> Adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, all_reg);
 
-        ListView listview = (ListView) root.findViewById(R.id.noti_list) ;
-        listview.setAdapter(Adapter) ;
-
+            ListView listview = (ListView) root.findViewById(R.id.noti_list);
+            listview.setAdapter(Adapter);
+        }
         return root;
     }
 }
