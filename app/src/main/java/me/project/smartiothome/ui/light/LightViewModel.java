@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.ArrayList;
+
 import me.project.smartiothome.ParseJson_secure;
 import me.project.smartiothome.RequestHttpURLConnection;
 
@@ -14,7 +16,7 @@ public class LightViewModel extends ViewModel {
 
     private String strUrl_sec;
     private MutableLiveData<String> mText;
-    private String[] reg_times;
+    private ArrayList<String> reg_times;
 
     public LightViewModel() {
         mText = new MutableLiveData<>();
@@ -51,7 +53,13 @@ public class LightViewModel extends ViewModel {
         }
     }
 
-    public String[] getAll() { return reg_times; }
+    public ArrayList<String> getAll() { return reg_times; }
+    public String getNull() {
+        if(reg_times!=null){
+            return "true";
+        }
+        return "false";
+    }
     public LiveData<String> getText() {
         return mText;
     }

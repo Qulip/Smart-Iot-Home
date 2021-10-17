@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.ArrayList;
+
 import me.project.smartiothome.R;
 
 public class LightFragment extends Fragment {
@@ -26,7 +28,14 @@ public class LightFragment extends Fragment {
         lightViewModel =
                 new ViewModelProvider(this).get(LightViewModel.class);
         View root = inflater.inflate(R.layout.fragment_light, container, false);
-        String[] all_reg = lightViewModel.getAll();
+        ArrayList<String> test_regs = lightViewModel.getAll();
+        String[] all_reg = {"11","22","33","",""};
+        if(test_regs!=null){
+            all_reg[3] = "true";
+        }else{
+            all_reg[3] = "false";
+        }
+        all_reg[4] = lightViewModel.getNull();
         if(all_reg.length>0) {//error occur in here
             ArrayAdapter<String> Adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, all_reg);
 
