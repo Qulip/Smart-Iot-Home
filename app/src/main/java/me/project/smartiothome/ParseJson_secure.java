@@ -14,6 +14,7 @@ public class ParseJson_secure {
     public String getTime(){ return time; }
     public String getPlace(){ return place; }
     public ArrayList<String> getAll(){return all_reg;}
+
     public ParseJson_secure(String json){
         try {
             JSONObject jsonObject = new JSONObject(json);
@@ -24,7 +25,7 @@ public class ParseJson_secure {
                 JSONObject myhouseObject = jsonArray.getJSONObject(i);
                 time = myhouseObject.getString("reg_time");
                 place = myhouseObject.getString("loc");//위치에 따라서 수정 필요
-                all_reg.add(time);
+                all_reg.add(time+" : "+place);
             }
         }
         catch (JSONException e){

@@ -15,13 +15,13 @@ import me.project.smartiothome.RequestHttpURLConnection;
 public class LightViewModel extends ViewModel {
 
     private String strUrl_sec;
-    private MutableLiveData<String> mText;
     private ArrayList<String> reg_times;
+    private MutableLiveData<ArrayList<String>> liveData;
 
     public LightViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
         strUrl_sec = "http://192.168.0.6:8090/getjson_sec.php";
+        reg_times = new ArrayList<>();
+        liveData = new MutableLiveData<ArrayList<String>>();
         NetWorkTask_Light networkTask = new NetWorkTask_Light(strUrl_sec,null);   //온
         networkTask.execute();
 
@@ -50,6 +50,7 @@ public class LightViewModel extends ViewModel {
             super.onPostExecute(s);
             ParseJson_secure sec = new ParseJson_secure(s);
             reg_times = sec.getAll();
+            liveData.setValue(reg_times);
         }
     }
 
@@ -60,7 +61,5 @@ public class LightViewModel extends ViewModel {
         }
         return "false";
     }
-    public LiveData<String> getText() {
-        return mText;
-    }
+    public LiveData<ArrayList<String>> getData(){ return liveData; }
 }
