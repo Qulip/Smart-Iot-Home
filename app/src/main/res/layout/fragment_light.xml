@@ -8,9 +8,16 @@
     android:gravity="center"
     android:orientation="horizontal"
     tools:context=".ui.light.LightFragment">
-    <ListView
+    <WebView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/webView"
+        >
+    </WebView>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:id="@+id/noti_list" />
 
     <ScrollView
