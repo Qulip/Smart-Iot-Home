@@ -54,12 +54,5 @@ public class LightViewModel extends ViewModel {
         }
     }
 
-    public ArrayList<String> getAll() { return reg_times; }
-    public String getNull() {
-        if(reg_times!=null){
-            return "true";
-        }
-        return "false";
-    }
     public LiveData<ArrayList<String>> getData(){ return liveData; }
 }

@@ -25,7 +25,11 @@ public class ParseJson_secure {
                 JSONObject myhouseObject = jsonArray.getJSONObject(i);
                 time = myhouseObject.getString("reg_time");
                 place = myhouseObject.getString("loc");//위치에 따라서 수정 필요
-                all_reg.add(time+" : "+place);
+                if(place.equals("1")){
+                    all_reg.add(time+" : 현관");
+                }else if(place.equals("2")){
+                    all_reg.add(time+" : 창문");
+                }
             }
         }
         catch (JSONException e){
