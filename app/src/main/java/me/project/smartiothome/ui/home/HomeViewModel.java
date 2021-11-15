@@ -32,19 +32,15 @@ public class HomeViewModel extends ViewModel {
         Temperature = new MutableLiveData<>();
         Humidity = new MutableLiveData<>();
         Detect = new MutableLiveData<>();
-        //strUrl = "http://192.168.0.6:8090/getjson.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
-        //strUrl = "http://211.58.189.32:3215/getjson.php";
-        /*
+        strUrl = "http://192.168.0.6:8090/getjson.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
         strUrl_sec = "http://192.168.0.6:8090/getjson_sec.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
         strUrl_th = "http://192.168.0.6:8090/getjson_th.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
-
-        */
-
+        /*
         //외부 접속
-        strUrl = "http://218.39.125.134:3215/getjson.php";
-        strUrl_sec = "http://218.39.125.134:3215/getjson_sec.php";
-        strUrl_th = "http://218.39.125.134:3215/getjson_th.php";
-
+        strUrl = "http://218.39.125.134:3415/getjson.php";
+        strUrl_sec = "http://218.39.125.134:3415/getjson_sec.php";
+        strUrl_th = "http://218.39.125.134:3415/getjson_th.php";
+        */
         NetWorkTask networkTask = new NetWorkTask(strUrl_th, strUrl_sec, null);   //온
         networkTask.execute();
     }
