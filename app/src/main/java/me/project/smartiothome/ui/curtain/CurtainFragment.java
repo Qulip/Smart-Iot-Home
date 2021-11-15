@@ -23,13 +23,7 @@ public class CurtainFragment extends Fragment {
         curtainViewModel =
                 new ViewModelProvider(this).get(CurtainViewModel.class);
         View root = inflater.inflate(R.layout.fragment_curtain, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        curtainViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+
         return root;
     }
 }

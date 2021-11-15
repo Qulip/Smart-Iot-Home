@@ -37,7 +37,8 @@ public class LightFragment extends Fragment {
         WebView webView = root.findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("http://192.168.0.6:8091/?action=stream");//error in this website
+        //webView.loadUrl("http://192.168.0.6:8091/?action=stream");//error in this website
+        webView.loadUrl("http://218.39.125.134:3214/?action=stream");//error in this website
         webView.setOnKeyListener(new View.OnKeyListener(){
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
