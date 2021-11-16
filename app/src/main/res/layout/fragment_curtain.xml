@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/light_Off"
             android:layout_weight="1"
-            android:text="켜기"
+            android:text="끄기"
             android:layout_margin="8dp"/>
     </LinearLayout>
 </LinearLayout>
