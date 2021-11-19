@@ -61,4 +61,8 @@
             android:text="끄기"
             android:layout_margin="8dp"/>
     </LinearLayout>
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchwebview"/>
 </LinearLayout>
