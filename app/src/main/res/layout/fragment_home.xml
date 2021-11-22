@@ -16,8 +16,8 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/iot" />
+            android:layout_height="400dp"
+            android:src="@drawable/iot_square" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
