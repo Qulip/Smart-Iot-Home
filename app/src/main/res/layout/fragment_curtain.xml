@@ -22,7 +22,8 @@
             android:id="@+id/curtain_up"
             android:layout_weight="1"
             android:layout_margin="8dp"
-            android:text="위로"/>
+            android:text="위로"
+            android:padding="10dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,13 +31,6 @@
             android:layout_weight="1"
             android:layout_margin="8dp"
             android:text="아래로"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/curtain_stop"
-            android:layout_weight="1"
-            android:layout_margin="8dp"
-            android:text="멈춤"/>
     </LinearLayout>
     <ImageView
         android:layout_width="match_parent"

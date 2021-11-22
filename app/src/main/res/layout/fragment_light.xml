@@ -6,18 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="horizontal"
+    android:orientation="vertical"
+    android:weightSum="1"
     tools:context=".ui.light.LightFragment">
 
     <WebView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/webView"
-        >
-    </WebView>
+        android:layout_weight="0.8" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.2"
         android:id="@+id/noti_list" />
 </LinearLayout>

@@ -5,6 +5,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
@@ -33,9 +34,13 @@ public class LightFragment extends Fragment {
         lightViewModel =
                 new ViewModelProvider(this).get(LightViewModel.class);
         View root = inflater.inflate(R.layout.fragment_light, container, false);
-
+        WebSettings webSettings = webview.getSettings();
         WebView webView = root.findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
+        webSettings.setJavaScriptEnabled(true);     //자바스크립트 허용
+        webSettings.setUseWideViewPort(true);       //wide ViewPort 사용 허용
+        webSettings.setLoadWithOverviewMode(true);  //컨텐츠가 웹뷰보다 클 경우 스크린 크기에 맞게 조정
+
+
         webView.setWebViewClient(new WebViewClient());
         //webView.loadUrl("http://192.168.0.6:8091/?action=stream");//error in this website
         webView.loadUrl("http://218.39.125.134:3214/?action=stream");//error in this website
