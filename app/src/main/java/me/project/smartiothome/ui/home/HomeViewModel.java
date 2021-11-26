@@ -36,6 +36,8 @@ public class HomeViewModel extends ViewModel {
         strUrl = "http://192.168.0.6:8090/getjson.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
         strUrl_sec = "http://192.168.0.6:8090/getjson_sec.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
         strUrl_th = "http://192.168.0.6:8090/getjson_th.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
+        //json 은 주만이가 불가능해서 그냥 페이지 읽어 와야함
+        //아래 코드 수정 필요
         */
         //외부 접속
         strUrl = "http://218.39.125.134:3215/getjson.php";
