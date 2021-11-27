@@ -10,10 +10,12 @@ public class ParseJson_secure {
     private String time;
     private String place;
     private ArrayList<String> all_reg;
+    private int length;
 
     public String getTime(){ return time; }
     public String getPlace(){ return place; }
     public ArrayList<String> getAll(){return all_reg;}
+    public int getLength(){return length;}
 
     public ParseJson_secure(String json){
         try {
@@ -21,6 +23,7 @@ public class ParseJson_secure {
             String rst = jsonObject.getString("result");
             JSONArray jsonArray = new JSONArray(rst);
             all_reg = new ArrayList<>();
+            length = jsonArray.length();
             for(int i =0; i<jsonArray.length(); i++){
                 JSONObject myhouseObject = jsonArray.getJSONObject(i);
                 time = myhouseObject.getString("reg_time");

@@ -67,9 +67,10 @@ public class HomeViewModel extends ViewModel {
             RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
             result = requestHttpURLConnection.request(url_th, values); // 해당 URL로 부터 결과물을 얻어온다.
             if(result!=null){
-                ParseJson_th json_th = new ParseJson_th(result);
-                temp = json_th.getTemp() + "'C";
-                humi = json_th.getHumi() + "%";
+                //ParseJson_th json_th = new ParseJson_th(result);
+                StringTokenizer st = new StringTokenizer(result);
+                temp = st.nextToken() + "'C";
+                humi = st.nextToken() + "%";
             }else{
                 temp = "Connection Error";
                 humi = "Connection Error";
@@ -77,11 +78,13 @@ public class HomeViewModel extends ViewModel {
             result = requestHttpURLConnection.request(url_sec, values); // 해당 URL로 부터 결과물을 얻어온다.
             if(result!=null){
                 ParseJson_secure json_secure = new ParseJson_secure(result);
+                /*
                 if (json_secure.getPlace().equals("0")) {
                     sec = "No";
                 } else {
                     sec = "Check Now";
-                }
+                }*/
+                sec = Integer.toString(json_secure.getLength())+"times";
             }else{
                 sec = "Connection Error";
             }
