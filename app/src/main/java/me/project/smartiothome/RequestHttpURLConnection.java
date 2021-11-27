@@ -14,23 +14,17 @@ public class RequestHttpURLConnection {
 
     public String request(String _url, ContentValues _params){
 
-        // HttpURLConnection 참조 변수.
-        HttpURLConnection urlConn = null;
-        // URL 뒤에 붙여서 보낼 파라미터.
-        StringBuffer sbParams = new StringBuffer();
+        HttpURLConnection urlConn = null;               // HttpURLConnection 참조 변수.
+        StringBuffer sbParams = new StringBuffer();     // URL 뒤에 붙여서 보낼 파라미터.
 
         /**
          * 1. StringBuffer에 파라미터 연결
          * */
-        // 보낼 데이터가 없으면 파라미터를 비운다.
         if (_params == null)
-            sbParams.append("");
-            // 보낼 데이터가 있으면 파라미터를 채운다.
-        else {
-            // 파라미터가 2개 이상이면 파라미터 연결에 &가 필요하므로 스위칭할 변수 생성.
-            boolean isAnd = false;
-            // 파라미터 키와 값.
-            String key;
+            sbParams.append("");                        // 보낼 데이터가 없으면 파라미터를 비운다.
+        else {                                          // 보낼 데이터가 있으면 파라미터를 채운다.
+            boolean isAnd = false;                      // 파라미터가 2개 이상이면 파라미터 연결에 &가 필요하므로 스위칭할 변수 생성.
+            String key;// 파라미터 키와 값.
             String value;
 
             for(Map.Entry<String, Object> parameter : _params.valueSet()){
@@ -75,18 +69,16 @@ public class RequestHttpURLConnection {
                 return "error1";
 
             // [2-4]. 읽어온 결과물 리턴.
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(urlConn.getInputStream(), "UTF-8"));
             // 요청한 URL의 출력물을 BufferedReader로 받는다.
-            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream(), "UTF-8"));
 
-            // 출력물의 라인과 그 합에 대한 변수.
-            String line;
+            String line;            // 출력물의 라인과 그 합에 대한 변수.
             String page = "";
 
-            // 라인을 받아와 합친다.
             while ((line = reader.readLine()) != null){
-                page += line;
+                page += line;       // 라인을 받아와 합친다.
             }
-
             return page;
 
         } catch (MalformedURLException e) { // for URL.
@@ -97,9 +89,6 @@ public class RequestHttpURLConnection {
             if (urlConn != null)
                 urlConn.disconnect();
         }
-
         return "error2";
-
     }
-
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -33,15 +34,11 @@ public class CurtainFragment extends Fragment {
         Handler handler = new Handler();
         light_On.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                webview.loadUrl(control_Url + "/led?pinD8=on");
-            }
+            public void onClick(View v) {webview.loadUrl(control_Url + "/led?pinD8=on");}
         });
         light_Off.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                webview.loadUrl(control_Url + "/led?pinD8=off");
-            }
+            public void onClick(View v) {webview.loadUrl(control_Url + "/led?pinD8=off");}
         });
         curtain_Up.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -49,21 +46,17 @@ public class CurtainFragment extends Fragment {
                 webview.loadUrl(control_Url + "/blind?blind=up");
                 handler.postDelayed(new Runnable() {
                     @Override
-                    public void run() {
-                        webview.loadUrl(control_Url + "/blind?blind=stop");
-                    }
+                    public void run() { webview.loadUrl(control_Url + "/blind?blind=stop"); }
                 },2000);
             }
         });
-        curtain_Up.setOnClickListener(new View.OnClickListener(){
+        curtain_Down.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 webview.loadUrl(control_Url + "/blind?blind=down");
                 handler.postDelayed(new Runnable() {
                     @Override
-                    public void run() {
-                        webview.loadUrl(control_Url + "/blind?blind=stop");
-                    }
+                    public void run() { webview.loadUrl(control_Url + "/blind?blind=stop"); }
                 },2000);
             }
         });

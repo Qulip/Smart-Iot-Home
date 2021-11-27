@@ -19,14 +19,14 @@ public class LightViewModel extends ViewModel {
     private MutableLiveData<ArrayList<String>> liveData;
 
     public LightViewModel() {
-        //strUrl_sec = "http://192.168.0.6:8090/getjson_sec.php";                 //내부
-        strUrl_sec = "http://218.39.125.134:3215/getjson_sec.php";
+        strUrl_sec = "http://192.168.1.105:8090/getjson_sec.php";
         reg_times = new ArrayList<>();
         liveData = new MutableLiveData<ArrayList<String>>();
         NetWorkTask_Light networkTask = new NetWorkTask_Light(strUrl_sec,null);   //온
         networkTask.execute();
-
     }
+
+    public LiveData<ArrayList<String>> getData(){ return liveData; }
 
     public class NetWorkTask_Light extends AsyncTask<Void, Void, String> {
         private String url_sec;
@@ -36,7 +36,6 @@ public class LightViewModel extends ViewModel {
             this.values = values;
             this.url_sec = url_sec;
         }
-
         @Override
         protected String doInBackground(Void... params) {
 
@@ -45,7 +44,6 @@ public class LightViewModel extends ViewModel {
             result = requestHttpURLConnection.request(url_sec, values); // 해당 URL로 부터 결과물을 얻어온다.
             return result;
         }
-
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -54,6 +52,4 @@ public class LightViewModel extends ViewModel {
             liveData.setValue(reg_times);
         }
     }
-
-    public LiveData<ArrayList<String>> getData(){ return liveData; }
 }

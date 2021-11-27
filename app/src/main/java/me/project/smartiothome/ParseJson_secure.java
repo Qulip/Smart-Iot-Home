@@ -7,8 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class ParseJson_secure {
-    private String time;
-    private String place;
+    private String time, place;
     private ArrayList<String> all_reg;
     private int length;
 
@@ -27,7 +26,7 @@ public class ParseJson_secure {
             for(int i =0; i<jsonArray.length(); i++){
                 JSONObject myhouseObject = jsonArray.getJSONObject(i);
                 time = myhouseObject.getString("reg_time");
-                place = myhouseObject.getString("loc");//위치에 따라서 수정 필요
+                place = myhouseObject.getString("loc");     //값에 따라 위치 지정
                 if(place.equals("1")){
                     all_reg.add(time+" : 현관");
                 }else if(place.equals("2")){

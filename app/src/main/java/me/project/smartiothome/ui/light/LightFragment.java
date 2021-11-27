@@ -42,8 +42,7 @@ public class LightFragment extends Fragment {
         webSettings.setLoadWithOverviewMode(true);  //컨텐츠가 웹뷰보다 클 경우 스크린 크기에 맞게 조정
 
         webview.setWebViewClient(new WebViewClient());
-        //webView.loadUrl("http://192.168.0.6:8091/?action=stream");//error in this website
-        webview.loadUrl("http://218.39.125.134:3214/?action=stream");//error in this website
+        webview.loadUrl("http://192.168.1.105:8091/?action=stream");
         webview.setOnKeyListener(new View.OnKeyListener(){
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {

@@ -25,28 +25,21 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<String> Humidity;
     private MutableLiveData<String> Detect;
 
-    Handler handler = new Handler();
-
     public HomeViewModel() {
         mText = new MutableLiveData<>();
         Temperature = new MutableLiveData<>();
         Humidity = new MutableLiveData<>();
         Detect = new MutableLiveData<>();
-        /*
-        strUrl = "http://192.168.0.6:8090/getjson.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
-        strUrl_sec = "http://192.168.0.6:8090/getjson_sec.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
-        strUrl_th = "http://192.168.0.6:8090/getjson_th.php";      //내부 라즈베리 파이 json 추후 외부 IP로 변경
-        //json 은 주만이가 불가능해서 그냥 페이지 읽어 와야함
-        //아래 코드 수정 필요
-        */
-        //외부 접속
-        strUrl = "http://218.39.125.134:3215/getjson.php";
-        strUrl_sec = "http://218.39.125.134:3215/getjson_sec.php";
-        strUrl_th = "http://218.39.125.134:3215/getjson_th.php";
 
-        NetWorkTask networkTask = new NetWorkTask(strUrl_th, strUrl_sec, null);   //온
+        strUrl_sec = "http://192.168.1.105:8090/getjson_sec.php";
+        strUrl_th = "http://192.168.1.101";
+
+        NetWorkTask networkTask = new NetWorkTask(strUrl_th, strUrl_sec, null);
         networkTask.execute();
     }
+    public LiveData<String> getTemperature(){ return Temperature; }
+    public LiveData<String> getHumidity(){ return Humidity; }
+    public LiveData<String> getDetect(){ return Detect; }
 
     public class NetWorkTask extends AsyncTask<Void, Void, String> {
         private String url_th;
@@ -59,36 +52,23 @@ public class HomeViewModel extends ViewModel {
             this.values = values;
             this.url_sec = url_sec;
         }
-
         @Override
         protected String doInBackground(Void... params) {
-
-            String result, temp, humi, sec; // 요청 결과를 저장할 변수.
+            String result, html; // 요청 결과를 저장할 변수.
             RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
-            result = requestHttpURLConnection.request(url_th, values); // 해당 URL로 부터 결과물을 얻어온다.
-            if(result!=null){
-                //ParseJson_th json_th = new ParseJson_th(result);
-                StringTokenizer st = new StringTokenizer(result);
-                temp = st.nextToken() + "'C";
-                humi = st.nextToken() + "%";
+            html = requestHttpURLConnection.request(url_th, values); // 해당 URL로 부터 결과물을 얻어온다.
+            if(html!=null){
+                result = html;
             }else{
-                temp = "Connection Error";
-                humi = "Connection Error";
+                result = "Connection Error Connection Error";
             }
-            result = requestHttpURLConnection.request(url_sec, values); // 해당 URL로 부터 결과물을 얻어온다.
-            if(result!=null){
-                ParseJson_secure json_secure = new ParseJson_secure(result);
-                /*
-                if (json_secure.getPlace().equals("0")) {
-                    sec = "No";
-                } else {
-                    sec = "Check Now";
-                }*/
-                sec = Integer.toString(json_secure.getLength())+"times";
+            html = requestHttpURLConnection.request(url_sec, values); // 해당 URL로 부터 결과물을 얻어온다.
+            if(html!=null){
+                ParseJson_secure json_secure = new ParseJson_secure(html);
+                result = result + " " + json_secure.getLength() +"times";
             }else{
-                sec = "Connection Error";
+                result = result + " Connection Error";
             }
-            result = temp + " " + humi + " " + sec;
             return result;
         }
 
@@ -98,13 +78,10 @@ public class HomeViewModel extends ViewModel {
             mText.setValue(s);
             if (s != null) {
                 StringTokenizer st = new StringTokenizer(s);
-                Temperature.setValue(st.nextToken());
-                Humidity.setValue(st.nextToken());
-                Detect.setValue(st.nextToken());
+                Temperature.setValue(st.nextToken()+"'");
+                Humidity.setValue(st.nextToken()+"%");
+                Detect.setValue(st.nextToken()+"Times");
             }
         }
     }
-    public LiveData<String> getTemperature(){ return Temperature; }
-    public LiveData<String> getHumidity(){ return Humidity; }
-    public LiveData<String> getDetect(){ return Detect; }
 }
