@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import me.project.smartiothome.ParseJson_secure;
 import me.project.smartiothome.RequestHttpURLConnection;
+import me.project.smartiothome.ui.home.HomeViewModel;
 
 public class LightViewModel extends ViewModel {
 
@@ -19,7 +20,7 @@ public class LightViewModel extends ViewModel {
     private MutableLiveData<ArrayList<String>> liveData;
 
     public LightViewModel() {
-        strUrl_sec = "http://192.168.1.105:8090/getjson_sec.php";
+        strUrl_sec = "http://192.168.1.100:8090/getjson_sec.php";
         reg_times = new ArrayList<>();
         liveData = new MutableLiveData<ArrayList<String>>();
         NetWorkTask_Light networkTask = new NetWorkTask_Light(strUrl_sec,null);   //온

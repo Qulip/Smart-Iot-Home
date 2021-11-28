@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Smart Iot Home</string>
     <string name="title_home">Home</string>
-    <string name="title_curtain">Curtain</string>
-    <string name="title_light">Light</string>
+    <string name="title_curtain">Control</string>
+    <string name="title_light">Security</string>
     <string name="loading">Loading</string>
+    <string name="rasp_server">http://192.168.1.100:8090</string>
+    <string name="rasp_cam">http://192.168.1.100:8091/?action=stream</string>
+    <string name="arduino_th">http://192.168.1.100</string>
+    <string name="arduino_con">http://192.168.1.100</string>
 </resources>

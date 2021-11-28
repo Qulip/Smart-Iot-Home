@@ -29,6 +29,7 @@ public class LightFragment extends Fragment {
     private LightViewModel lightViewModel;
     private ArrayList<String> testData;
     private WebView webview;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         lightViewModel =
@@ -42,7 +43,7 @@ public class LightFragment extends Fragment {
         webSettings.setLoadWithOverviewMode(true);  //컨텐츠가 웹뷰보다 클 경우 스크린 크기에 맞게 조정
 
         webview.setWebViewClient(new WebViewClient());
-        webview.loadUrl("http://192.168.1.105:8091/?action=stream");
+        webview.loadUrl("http://192.168.1.100:8091/?action=stream");
         webview.setOnKeyListener(new View.OnKeyListener(){
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {

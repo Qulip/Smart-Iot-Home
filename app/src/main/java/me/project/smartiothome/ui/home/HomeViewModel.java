@@ -31,8 +31,8 @@ public class HomeViewModel extends ViewModel {
         Humidity = new MutableLiveData<>();
         Detect = new MutableLiveData<>();
 
-        strUrl_sec = "http://192.168.1.105:8090/getjson_sec.php";
-        strUrl_th = "http://192.168.1.101";
+        strUrl_sec = "http://192.168.1.100:8090/getjson_sec.php";
+        strUrl_th = "http://192.168.1.104";
 
         NetWorkTask networkTask = new NetWorkTask(strUrl_th, strUrl_sec, null);
         networkTask.execute();
@@ -40,6 +40,12 @@ public class HomeViewModel extends ViewModel {
     public LiveData<String> getTemperature(){ return Temperature; }
     public LiveData<String> getHumidity(){ return Humidity; }
     public LiveData<String> getDetect(){ return Detect; }
+    public LiveData<String> getTest(){ return mText; }
+
+    public void Refresh(){
+        NetWorkTask netWorkTask = new NetWorkTask(strUrl_th, strUrl_sec, null);
+        netWorkTask.execute();
+    }
 
     public class NetWorkTask extends AsyncTask<Void, Void, String> {
         private String url_th;
@@ -58,16 +64,16 @@ public class HomeViewModel extends ViewModel {
             RequestHttpURLConnection requestHttpURLConnection = new RequestHttpURLConnection();
             html = requestHttpURLConnection.request(url_th, values); // 해당 URL로 부터 결과물을 얻어온다.
             if(html!=null){
-                result = html;
+                result = html.substring(39);
             }else{
-                result = "Connection Error Connection Error";
+                result = "Connection Error,Connection Error";
             }
             html = requestHttpURLConnection.request(url_sec, values); // 해당 URL로 부터 결과물을 얻어온다.
             if(html!=null){
                 ParseJson_secure json_secure = new ParseJson_secure(html);
-                result = result + " " + json_secure.getLength() +"times";
+                result = result + "," + json_secure.getLength();
             }else{
-                result = result + " Connection Error";
+                result = result + ",Connection Error";
             }
             return result;
         }
@@ -77,8 +83,8 @@ public class HomeViewModel extends ViewModel {
             super.onPostExecute(s);
             mText.setValue(s);
             if (s != null) {
-                StringTokenizer st = new StringTokenizer(s);
-                Temperature.setValue(st.nextToken()+"'");
+                StringTokenizer st = new StringTokenizer(s,",");
+                Temperature.setValue(st.nextToken()+"°C");
                 Humidity.setValue(st.nextToken()+"%");
                 Detect.setValue(st.nextToken()+"Times");
             }

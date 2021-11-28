@@ -18,7 +18,7 @@ import me.project.smartiothome.R;
 public class CurtainFragment extends Fragment {
 
     private CurtainViewModel curtainViewModel;
-    String control_Url = "http://192.168.1.108";
+    String control_Url = "http://192.168.1.101";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class CurtainFragment extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() { webview.loadUrl(control_Url + "/blind?blind=stop"); }
-                },2000);
+                },500);
             }
         });
         curtain_Down.setOnClickListener(new View.OnClickListener(){
@@ -57,7 +57,7 @@ public class CurtainFragment extends Fragment {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() { webview.loadUrl(control_Url + "/blind?blind=stop"); }
-                },2000);
+                },500);
             }
         });
         return root;

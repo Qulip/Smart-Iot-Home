@@ -31,6 +31,7 @@
             android:layout_weight="1"
             android:layout_margin="8dp"
             android:text="위로"
+            android:backgroundTint="@color/cardview_dark_background"
             android:padding="10dp"/>
         <Button
             android:layout_width="wrap_content"
@@ -38,6 +39,7 @@
             android:id="@+id/curtain_down"
             android:layout_weight="1"
             android:layout_margin="8dp"
+            android:backgroundTint="@color/cardview_dark_background"
             android:text="아래로"/>
     </LinearLayout>
     <ImageView
@@ -54,11 +56,13 @@
             android:id="@+id/light_On"
             android:layout_weight="1"
             android:text="켜기"
+            android:backgroundTint="@color/cardview_dark_background"
             android:layout_margin="8dp"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/light_Off"
+            android:backgroundTint="@color/cardview_dark_background"
             android:layout_weight="1"
             android:text="끄기"
             android:layout_margin="8dp"/>
